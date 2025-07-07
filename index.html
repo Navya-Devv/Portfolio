@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navya Madiraju - Portfolio</title>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    
+    :root {
+        --primary: #8a2be2; /* Blue-Purple */
+        --secondary: #5f4b8b; /* Darker Purple */
+        --accent: #4682b4; /* Steel Blue */
+        --dark: #2c3e50;
+        --light: #ecf0f1;
+        --gradient-1: linear-gradient(135deg, #7a7bff 0%, #8a5dca 100%); /* Blue-Purple Gradient */
+        --gradient-2: linear-gradient(135deg, #7a9eff 0%, #5f4b8b 100%); /* Blue-Purple Gradient */
+        --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --gradient-4: linear-gradient(135deg, #4e9eff 0%, #3c7bf8 100%);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+        background: #0a0a0a;
+        color: #ffffff;
+    }
+
+    /* Remove Custom Cursor */
+    body {
+        cursor: default;
+    }
+
+    /* Animated Background */
+    .bg-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .bg-gradient {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 20% 50%, #8a2be222 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, #5f4b8b22 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, #4682b422 0%, transparent 50%);
+        animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+        50% { transform: translateX(-50%) translateY(-50%) rotate(180deg); }
+    }
+
+    .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .particle {
+        position: absolute;
+        background: #8a2be2;
+        border-radius: 50%;
+        animation: particleFloat 15s infinite linear;
+    }
+
+    @keyframes particleFloat {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Header */
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 3rem;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a::before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--gradient-2);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::before {
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        color: #8a2be2;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        padding: 0 5%;
+    }
+
+    .hero-content {
+        max-width: 1000px;
+        z-index: 2;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(138, 43, 226, 0.1);
+        border: 1px solid rgba(138, 43, 226, 0.3);
+        color: #8a2be2;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        background: linear-gradient(135deg, #ffffff 0%, #8a2be2 50%, #5f4b8b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+        from { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.3)); }
+        to { filter: drop-shadow(0 0 40px rgba(138, 43, 226, 0.6)); }
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn-primary {
+        background: var(--gradient-2);
+        color: white;
+        box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 50px rgba(138, 43, 226, 0.4);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #8a2be2;
+        color: #8a2be2;
+    }
+
+    /* Stats Section */
+    .stats {
+        padding: 5rem 5%;
+        background: rgba(255, 255, 255, 0.02);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .stat-card {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--gradient-3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Features Section */
+    .features {
+        padding: 8rem 5%;
+        position: relative;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        background: var(--gradient-4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 3rem;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gradient-2);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-15px);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
+        filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.3));
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .feature-card p {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+        font-size: 1rem;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+        padding: 8rem 5%;
+        background: rgba(255, 255, 255, 0.02);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 3rem auto 0;
+    }
+
+    .tech-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .tech-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: scale(1.05);
+    }
+
+    .tech-name {
+        font-weight: 600;
+        color: #8a2be2;
+        margin-bottom: 0.5rem;
+    }
+
+    .tech-desc {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* CTA Section */
+    .cta {
+        padding: 8rem 5%;
+        text-align: center;
+        background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+    }
+
+    .cta h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .cta p {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+        background: rgba(0, 0, 0, 0.5);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 3rem 5%;
+        text-align: center;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        nav {
+            padding: 1rem 5%;
+        }
+    }
+
+    /* Scroll Animations */
+    .animate-in {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+
+    .animate-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>`
+
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-trail"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-container">
+        <div class="bg-gradient"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Navya Madiraju</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#tech">Technology</a></li>
+                <li><a href="#cta">Get in Touch</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Portfolio</div>
+            <h1>Navya Madiraju</h1>
+          <section id="about" class="about-me">
+    <h4 class="section-title animate-in">About Me</h2>
+    <p class="section-subtitle animate-in">A passionate coder, developer, and debater, always eager to learn and explore new ideas.</p>
+    
+    <div class="about-content animate-in">
+        <p>
+            I'm Navya Madiraju, a tech enthusiast with experience in AI/ML, full-stack development, and embedded systems. I enjoy debating, reading about current events and politics, and constantly learning new things. Whether it's building innovative tech or engaging in discussions, I love exploring diverse topics and expanding my knowledge.
+        </p>
+    </div>
+</section>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    📽️ Explore Projects
+                </a>
+                <a href="#tech" class="btn btn-secondary">
+                    👩‍💻 View Technology Stack
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="features">
+        <h2 class="section-title animate-in">My Projects</h2>
+        
+       <!-- Projects Section -->
+<section id="projects" class="projects">
+    <h2 class="section-title animate-in">My Projects</h2>
+    
+    <div class="features-grid">
+        <div class="feature-card animate-in">
+            <span class="feature-icon">⛑️</span>
+            <h3>OptiRelief</h3>
+            <p>Optimizes disaster relief operations by leveraging advanced algorithms to streamline resource allocation, reduce response times, and maximize the impact of aid delivery, ensuring a quicker and more efficient disaster response.</p>
+            <a href="https://github.com/Navya-Devv/OptiRelief" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">🔊</span>
+            <h3>Antarbhashi.ai - Naval Translation System</h3>
+            <p>Developed an offline speech-to-text and translation system for 6+ Indian Ocean Region languages, achieving 92% accuracy with FFT-based noise reduction, making it suitable for noisy maritime environments and enhancing naval communication.</p>
+            <a href="https://github.com/Navya-Devv/AntarBhashi.navy" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">🚑</span>
+            <h3>HealthSync</h3>
+            <p>An AI-powered real-time symptom tracking system that helps patients monitor their health by identifying patterns and risks, reducing diagnosis time by 25%, and improving treatment efficiency with personalized alerts and feedback.</p>
+            <a href="https://github.com/Navya-Devv/HealthSync" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">♿</span>
+            <h3>Smart Wheelchair</h3>
+            <p>Enhanced mobility with a wheelchair equipped with voice control, image processing, and ultrasonic sensors to avoid obstacles, tested with over 20 users.</p>
+            <a href="https://github.com/Navya-Devv/SmartWheechair" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">🌆</span>
+            <h3>Green Space Optimizer</h3>
+            <p>Optimizing urban green spaces using AI algorithms to enhance city planning and improve air quality and public health.</p>
+            <a href="https://github.com/Navya-Devv/Green-Space-Optimizer" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">🌿</span>
+            <h3>AsthmaCare</h3>
+            <p>Predicts asthma risks by analyzing AQI, pollen levels, and user history, offering personalized alerts to reduce health risks. This project saw a 35% increase in engagement with users taking preventive actions.</p>
+            <a href="https://github.com/Navya-Devv/AsthamaCare" class="btn btn-secondary">View Project</a>
+        </div>
+
+        <div class="feature-card animate-in">
+    <span class="feature-icon">🚤</span>
+    <h3>River Cleaning Bot</h3>
+    <p>Developed an Arduino-based bot designed to navigate waterways and collect debris within a 100-meter radius. This project helps reduce water pollution by automating the cleaning process, improving the health of aquatic environments.</p>
+    <a href="https://github.com/Navya-Devv/River-Cleaning-Bot" class="btn btn-secondary">View Project</a>
+</div>
+
+
+        <div class="feature-card animate-in">
+            <span class="feature-icon">🗑️</span>
+            <h3>Smart Dustbin</h3>
+            <p>Leveraging IoT, this smart waste management system uses an ESP32 to monitor dustbin fill levels in real time, providing notifications for timely collection and contributing to cleaner, more efficient waste disposal in urban areas.</p>
+            <a href="https://github.com/Navya-Devv/Smart-Dustbin" class="btn btn-secondary">View Project</a>
+        </div>
+    </div>
+</section>
+
+
+   
+    <!-- Tech Stack Section -->
+<!-- Tech Stack Section -->
+<section id="tech" class="tech-stack">
+    <h2 class="section-title animate-in">Technology Stack</h2>
+    
+    <div class="tech-grid">
+        <div class="tech-item animate-in">
+            <div class="tech-name">C++</div>
+            <div class="tech-desc">Core programming language for performance-critical applications</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">JavaScript</div>
+            <div class="tech-desc">Dynamic language for full-stack web development</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">React.js</div>
+            <div class="tech-desc">Library for building interactive UIs</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">Node.js</div>
+            <div class="tech-desc">Backend runtime for building scalable APIs</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">Streamlit</div>
+            <div class="tech-desc">Framework for building data science apps</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">Python</div>
+            <div class="tech-desc">Popular programming language for AI/ML, web development, and scripting</div>
+        </div>
+    
+        <div class="tech-item animate-in">
+            <div class="tech-name">Arduino</div>
+            <div class="tech-desc">Platform for building IoT and hardware-based projects</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">ESP32</div>
+            <div class="tech-desc">Microcontroller for IoT projects with Wi-Fi and Bluetooth capabilities</div>
+        </div>
+        
+        <div class="tech-item animate-in">
+            <div class="tech-name">SQL</div>
+            <div class="tech-desc">Structured Query Language for managing relational databases</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">Firebase</div>
+            <div class="tech-desc">Backend-as-a-Service platform for building mobile and web apps</div>
+        </div>
+    
+        <div class="tech-item animate-in">
+            <div class="tech-name">Vite</div>
+            <div class="tech-desc">Next-generation build tool for faster web development</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">GitHub</div>
+            <div class="tech-desc">Platform for version control and collaboration using Git</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">VS Code</div>
+            <div class="tech-desc">Lightweight code editor with powerful extensions for various programming languages</div>
+        </div>
+        <div class="tech-item animate-in">
+            <div class="tech-name">LeetCode</div>
+            <div class="tech-desc">Platform for practicing coding problems and preparing for technical interviews</div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- CTA Section -->
+    <!-- Contact Me Section -->
+<section id="cta" class="cta">
+    <h2 class="animate-in">Let's Connect!</h2>
+    <p class="animate-in">Feel free to reach out to me for collaborations, projects, or just to connect.</p>
+    <div class="cta-buttons animate-in">
+        <a href="https://github.com/Navya-Devv" class="btn btn-primary">
+            <span role="img" aria-label="GitHub">💻</span> GitHub
+        </a>
+        <a href="mailto:madiraju.navyaa@gmail.com" class="btn btn-secondary">
+            <span role="img" aria-label="Email">🔗</span> E-mail
+        </a>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Navya Madiraju. All Rights Reserved. | Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorTrail = document.querySelector('.cursor-trail');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorTrail.style.left = e.clientX + 'px';
+                cursorTrail.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        // Particles Animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
